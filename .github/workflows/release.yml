@@ -15,7 +15,7 @@ jobs:
             - uses: actions/checkout@master
             - uses: actions/setup-node@v1
             - name: Install
-              run: npm install typescript -g
+              run: npm install&&npm install typescript -g
             - name: Build
               run: tsc
             - name: AUTH
