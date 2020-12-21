@@ -1,0 +1,31 @@
+{
+  "name": "@tosee/dns",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "ndns": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "postversion": "git push --tags",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tosee/color": "^1.0.3",
+    "clipanion": "^2.6.2",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "moment": "^2.29.1",
+    "multicast-dns": "^7.2.2",
+    "superagent": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.6",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/node": "^14.14.14",
+    "@types/superagent": "^4.1.10"
+  }
+}
