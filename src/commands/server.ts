@@ -9,13 +9,26 @@ import { lightgreen } from '@tosee/color';
 import { createHash } from 'crypto';
 
 export default class Server extends Command {
-    @Command.String(`-p,--port`)
+    static usage = Command.Usage({
+        description: `start server of ndns`,
+        examples: [[
+            `start a server without config`,
+            `$0 -p 8676 --salt secret`,
+        ],
+        [
+            `start a client with config`,
+            `$0 -p 8676 -c ./records.json`,
+        ]],
+    });
+
+
+    @Command.String(`-p,--port`, { description: "The server port" })
     public port: string;
 
-    @Command.String(`-c,--config`)
+    @Command.String(`-c,--config`, { description: "Preload records" })
     public config: string;
 
-    @Command.String(`--salt`)
+    @Command.String(`--salt`, { description: "Content signature string" })
     public salt: string;
 
     @Command.Path(`server`)

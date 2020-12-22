@@ -7,24 +7,37 @@ import { log } from '../util/log';
 import { lightgreen } from '@tosee/color';
 
 export default class Client extends Command {
-    @Command.Array(`--name`)
+    static usage = Command.Usage({
+        description: `start client of ndns`,
+        examples: [[
+            `start a client without name`,
+            `$0 -s 127.0.0.1 -p 8676 --salt secret`,
+        ],
+        [
+            `start a client with a name`,
+            `$0 -s 127.0.0.1 -p 8676 --salt secret --name test.local`,
+        ],
+        [
+            `start a client with multi name`,
+            `$0 -s 127.0.0.1 -p 8676 --salt secret --name test.local --name test2.local`,
+        ]],
+    });
+
+    @Command.Array(`--name`, { description: "The name of internal IP, sync with all client" })
     public names: string[];
 
-    @Command.String(`-s,--server`)
+    @Command.String(`-s,--server`, { description: "The server host" })
     public server: string;
 
-    @Command.String(`--salt`)
+    @Command.String(`--salt`, { description: "Content signature string" })
     public salt: string;
 
-    @Command.String(`-p,--port`)
+    @Command.String(`-p,--port`, { description: "The server port" })
     public port: string;
 
-    @Command.Boolean(`-f,--force`)
+    @Command.Boolean(`-f,--force`, { description: "Force cover server records" })
     public force: boolean = false;
-
-    @Command.Boolean(`--print`)
-    public print: boolean = false;
-
+    
     @Command.Path(`client`)
     async execute() {
         if (this.server == undefined) {
